@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link href="css/movie.css" rel="stylesheet" />
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/tools.js"></script>
+        <script type="text/javascript">
+
+        </script>
+	</head >
+    <body >
+        <div class="wrap">
+            <div class="header">
+                <div class="left_icon" onclick="window.history.go(-1);">
+                    <img src="img/left.png" />
+                </div>
+                <p>小莱电影</p>
+            </div>
+            <div id="m_header">影片</div>
+            <div id="wrapper">
+                <div id="scroller">
+                    <div class="movie">
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="m_footer">
+                <ul>
+                    <li><a href="#" class="cur"><img src="img/movie_icon.png" /><p>电影</p></a></li>
+                    <li><a href="#"><img src="img/order.png" /><p>订单</p></a></li>
+                    <li><a href="#"><img src="img/uder.png" /><p>我的</p></a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html >
+<script>
+    $(function () {
+        var movie = "";
+        $.ajax({
+
+            url: "http://movieapi.raoqi.top/api/Movie/New",
+            type: "get",
+            success: function (data) {
+                console.log(data)
+                
+                for (var i = 0; i < data.length; i++)
+
+                {
+                    
+                    movie += '<div class="movie_box"><div class="m_pic"><a href="detail.html?id=' + data[i].MovieID + '"><img src="' + "http://movieapi.raoqi.top/" + data[i].ImgUrl + '" /><a/></div><div class="m_content"><div class="m_name"><h3>"' + data[i].Name + '"</h3><h4><span>2D</span>IMAX</h4></div><div class="m_type">"' + data[1].Type + '"</div><div class="m_cast">"' + data[i].Actors + '"</div></div><div class="m_btn"><p>"' + data[i].Rate + '"</p><input type="button" id="" value="购票" /></div></div>'
+                }
+                
+                $(movie).appendTo(".movie");
+
+
+
+            }
+
+
+        })
+      
+
+    })
+</script>
